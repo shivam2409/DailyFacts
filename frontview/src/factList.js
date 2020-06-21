@@ -11,6 +11,8 @@ import axios from 'axios';
 //   return <h1>Daily Facts</h1>;
 // }
 
+// const Factlist =()=>{}
+
 // export default FactList;
 class Factlist extends Component {
   async componentDidMount() {
