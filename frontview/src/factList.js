@@ -1,31 +1,23 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-// function FactList() {
+const Factlist = () => {
+  const [facts, setFacts] = useState([]);
 
-//   useEffect =(async()=>{
+  useEffect(() => {
+    (async function (params) {
+      const res = await axios.get(
+        'http://api.fungenerators.com/fact/random?category=Countries&subcategory=USA',
+        {
+          headers: { accept: 'application/json' },
+          method: 'GET',
+        }
+      );
+      setFacts(res.data);
+    })();
+  }, [setFacts]);
 
-//     const res = await axios.get('https://uselessfacts.jsph.pl/', {
-//    headers: { accept: 'application/json' },
-//   })
-//   return <h1>Daily Facts</h1>;
-// }
-
-// const Factlist =()=>{}
-
-// export default FactList;
-class Factlist extends Component {
-  async componentDidMount() {
-    //Faching data
-    const res = await axios.get('https://api.football-data.org/v2/matches', {
-      // headers: { accept: 'application/json' },
-      method: 'GET',
-    });
-    console.log(res);
-  }
-  render() {
-    return <h1>Daily Facts</h1>;
-  }
-}
+  return <>{console.log(facts)}</>;
+};
 
 export default Factlist;
